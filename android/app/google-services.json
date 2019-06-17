@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "992634426834",
+    "firebase_url": "https://mockup2-2efa1.firebaseio.com",
+    "project_id": "mockup2-2efa1",
+    "storage_bucket": "mockup2-2efa1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992634426834:android:aeb16f9b61e58094",
+        "android_client_info": {
+          "package_name": "arudrin.mockup2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992634426834-j32045c3dq9bcs62pskb2k2aa3brc82r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQnvGG0syiiw7JRqTWwXI0CcxPa2K00rY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "992634426834-j32045c3dq9bcs62pskb2k2aa3brc82r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
