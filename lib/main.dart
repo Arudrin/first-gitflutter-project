@@ -11,6 +11,11 @@ final dummySnapshot = [
   {"name": "Justin", "votes": 1},
 ];
 
+
+
+
+
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,22 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(title: Text('Reservation Requests')),
       body: _buildBody(context),
+      drawer: _buildDrawer(context),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          // to do
+        },
+        child: Icon(Icons.add_box),
+        backgroundColor: Colors.pink,
+      ),
     );
+  }
+
+  Widget _buildDrawer(BuildContext context) {
+    return Drawer(
+      child: _buildBody(context)
+    );
+
   }
 
   Widget _buildBody(BuildContext context) {
@@ -60,11 +80,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Padding(
       key: ValueKey(record.venue),
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 8.0),
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(5.0),
+          border: Border.all(color: Colors.white),
+          borderRadius: BorderRadius.circular(0),
         ),
         child: ListTile(
           title: Text(record.venue),
