@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:mockup2/model/request.dart';
+import 'package:mockup2/pages/inbox.dart';
+import 'package:mockup2/pages/request.dart';
 void main() => runApp(MyApp());
 
 final dummySnapshot = [
@@ -34,6 +36,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Widget> pages = [
+    InboxPage(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,9 +57,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildDrawer(BuildContext context) {
     return Drawer(
-      child: _buildBody(context)
+      child: _buildDrawerBody(context)
     );
+  } //_buildDrawer
 
+  Widget _buildDrawerBody(BuildContext context){
+    return ListView(
+      children: <Widget>[ DrawerHeader( child: Text('wtf')), InboxPage(),Pending()],
+    );
   }
 
   Widget _buildBody(BuildContext context) {
@@ -83,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
       padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 8.0),
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.white),
+          border: Border.all(color: Colors.blue),
           borderRadius: BorderRadius.circular(0),
         ),
         child: ListTile(
@@ -96,26 +106,4 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class Record {
-  final String venue;
-  final String up_mail;
-  final String date;
-  final String order_id;
-  final DocumentReference reference;
 
-  Record.fromMap(Map<String, dynamic> map, {this.reference})
-      : assert(map['venue'] != null),
-        assert(map['up_mail'] != null),
-        assert(map['order_id'] != null),
-        assert(map['date'] != null),
-        venue = map['venue'],
-        order_id = map['order_id'],
-        up_mail = map['up_mail'],
-        date = map['date'];
-
-  Record.fromSnapshot(DocumentSnapshot snapshot)
-      : this.fromMap(snapshot.data, reference: snapshot.reference);
-
-  @override
-  String toString() => "Record<$venue:$order_id:$up_mail:$date>";
-}
