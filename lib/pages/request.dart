@@ -2,15 +2,20 @@ import 'package:mockup2/main.dart';
 import 'package:flutter/material.dart';
 
 
-class Pending extends StatefulWidget {
+class InboxPage extends StatefulWidget {
   @override
-  _PendingPageState createState() => _PendingPageState();
+  _InboxPageState createState() => _InboxPageState();
 }
 
-class _PendingPageState extends State<Pending> {
+class _InboxPageState extends State<InboxPage> {
   @override
   Widget build(BuildContext context){
-    return ListTile(title: Text('Gwapo'));
+    return ListTile(
+        leading: Icon(Icons.inbox),
+        title:  Text('Inbox'),
+        trailing: Text('99+')
+    );
   }
 }
+
 
