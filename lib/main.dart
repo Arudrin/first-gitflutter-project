@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mockup2/model/request.dart';
-import 'package:mockup2/pages/inbox.dart';
 import 'package:mockup2/pages/request.dart';
+import 'package:mockup2/pages/pending.dart';
+import 'package:mockup2/pages/Option1.dart';
+import 'package:mockup2/pages/Option2.dart';
 void main() => runApp(MyApp());
 
 final dummySnapshot = [
@@ -24,6 +26,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Baby Names',
       home: MyHomePage(),
+      routes: {
+        '/pending': (context) => Pending(),
+        '/option1': (context) => Option1(),
+      },
     );
   }
 }
@@ -36,36 +42,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Widget> pages = [
-    InboxPage(),
-  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Reservation Requests')),
+      appBar: AppBar(title: Text('Reservation Requests'),
+      backgroundColor: Colors.red[800]),
       body: _buildBody(context),
-      drawer: _buildDrawer(context),
+      drawer: DrawerOnly(),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           // to do
         },
         child: Icon(Icons.add_box),
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.red[900],
       ),
     );
   }
 
-  Widget _buildDrawer(BuildContext context) {
-    return Drawer(
-      child: _buildDrawerBody(context)
-    );
-  } //_buildDrawer
-
-  Widget _buildDrawerBody(BuildContext context){
-    return ListView(
-      children: <Widget>[ DrawerHeader( child: Text('wtf')), InboxPage(),Pending()],
-    );
-  }
 
   Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -107,3 +101,43 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 
+class DrawerOnly extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+        child: _buildDrawerBody(context)
+    );
+  } //_buildDrawer
+
+
+  Widget _buildDrawerBody(BuildContext context) {
+    return ListView(
+      children: <Widget>[
+        DrawerHeader(
+            child: Container(
+              child: Column(
+
+                children: <Widget>[
+                  Material(
+                    elevation: 10,
+                    child: Padding(padding: EdgeInsets.all(8.0),
+                      child: Image.asset('lib/icons/uplogo.png',width:100,height: 100,)
+                      ,)
+                    ,
+                  )
+                ],
+              ),
+            ) ,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: <Color>[ Colors.red[900], Colors.green[800]] )
+        )
+        ),
+        RequestsTile(),
+        PendingTile(),
+        Option1Tile(),
+        Option2Tile()
+      ],
+    );
+  }
+
+}
